@@ -8,5 +8,7 @@ public class SegmentTree
         System.out.println("        ============");
 
         in.close();
+        int n=in.nextInt();
+        
     }
 }
