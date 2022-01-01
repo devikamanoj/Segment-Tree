@@ -88,18 +88,18 @@ public class MinQueryST
     	{
     		arr[i]=in.nextInt();
     	}
-    	
     	ConstructST(arr, n);
     	
     	int start,end;
-    	System.out.print("Enter starting index of query");
+    	System.out.print("Enter starting index of query : ");
     	start=in.nextInt();
-    	System.out.print("Enter ending index of query");
+    	System.out.print("Enter ending index of query : ");
     	end=in.nextInt();
     	 
     	int small=RangeMinQuery(n, start, end);
-    	System.out.println("\n Smallest Element in the range "+start+" "+end+"  is: "+small);
-    	in.close();
+    	System.out.println("\nSmallest Element in the range "
+    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+small);
+    //	in.close();
 	}
     
 }

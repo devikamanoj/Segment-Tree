@@ -50,7 +50,7 @@ public class MaxQueryST
 		return arr[SI];
 		}
 		
-		// If there are more than one elements, then recur for left and right subtrees and store the max of values in this node
+		// When there is more than one element, the largest value is stored in this node. 
 		int mid = getMid(SI, EI);
 		
 		st[CurrIndex] = Math.max(constructSTUtil(arr, SI, mid,st, CurrIndex * 2 + 1),
@@ -67,17 +67,15 @@ public class MaxQueryST
 
 		// Maximum size of segment tree
 		int max_size = 2 * (int)Math.pow(2, x) - 1;
-
-		// Allocate memory
+		
 		int[] st = new int[max_size];
 
-		// Fill the allocated memory st
 		constructSTUtil(arr, 0, size - 1, st, 0);
 
-		// Return the constructed segment tree
 		return st;
 	}
-	public static void main(String[] args) throws Exception 
+	
+	static void mainMax()
 	{
 		Scanner in =new Scanner(System.in);
     	int n, arr[];
@@ -90,18 +88,18 @@ public class MaxQueryST
     	{
     		arr[i]=in.nextInt();
     	}
-    	
     	int ST[]=ConstructST(arr, n);
     	
     	int start,end;
-    	System.out.print("Enter starting index of query");
+    	System.out.print("Enter starting index of query : ");
     	start=in.nextInt();
-    	System.out.print("Enter ending index of query");
+    	System.out.print("Enter ending index of query : ");
     	end=in.nextInt();
     	 
     	int large=RangeMaxQuery(ST,n, start, end);
-    	System.out.println("\n Largest Element in the range "+start+" "+end+"  is: "+large);
-    	in.close();
+    	System.out.println("\nLargest Element in the range "
+    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+large);
+   
 	}
 
 }
