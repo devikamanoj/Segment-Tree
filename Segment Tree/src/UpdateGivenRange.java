@@ -1,34 +1,33 @@
 import java.util.*;
-public class LazyPropagation 
+public class UpdateGivenRange
 {       
     static int ST[] = new int[1000];  // To store segment tree
     static int UP[] = new int[1000];  // To store pending updates
     static Scanner in = new Scanner(System.in);
-    public static void main(String args[])
+    static int size;
+    
+    static void update()
     {
         ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
         ArrayList <Integer> Range = new ArrayList<Integer>();
         ArrayList <Integer> UpRange = new ArrayList<Integer>();
         System.out.print(" Enter the number of Leaf Nodes: ");
-        int size=in.nextInt();
+        size=in.nextInt();
 
         // taking the input of the leaf nodes
         System.out.print(" Enter the Leaf Nodes: ");
         LeafNodes=InputElements(LeafNodes, size);
         constructST(LeafNodes, size);
-
-        System.out.print("\n Enter the range to compute the sum: ");
-        Range=InputElements(Range, 2);
-  
-        System.out.println("Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
         
         System.out.print("\n Enter the range to update the tree: ");
         UpRange=InputElements(UpRange, 2);
         System.out.print("\n Enter the number to be updated: ");
         int num=in.nextInt();
         updateRange(size, UpRange.get(0), UpRange.get(1), num);
+        System.out.print("\n Enter the range to compute the sum: ");
+        Range=InputElements(Range, 2);
   
-        System.out.println("Updated sum of values in given range = " +getSum(size,Range.get(0), Range.get(1)));
+        System.out.println("Updated sum of values in given range = " +SumofGivenRange.getSum(size,Range.get(0), Range.get(1)));
     }
     static ArrayList<Integer> InputElements(ArrayList <Integer> array, int size)
     {
@@ -102,67 +101,7 @@ public class LazyPropagation
     static void updateRange(int n, int us, int ue, int diff)  
     {
         updateRangeUtil(0, 0, n - 1, us, ue, diff);
-    }
-      
-    /*  A recursive function to get the sum of values in given range of the array. The following are parameters for this function.
-        si --> Index of current node in the segment tree.
-            Initially 0 is passed as root is always at'
-            index 0
-        ss & se  --> Starting and ending indexes of the
-            segment represented by current node,
-            i.e., tree[si]
-        qs & qe  --> Starting and ending indexes of query
-            range */
-    static int getSumUtil(int ss, int se, int qs, int qe, int si)
-    {
-        // If lazy flag is set for current node of segment tree, then there are some pending updates. So we need to
-        // make sure that the pending updates are done before processing the sub sum query
-        if (UP[si] != 0)
-        {
-            // Make pending updates to this node. Note that this node represents sum of elements in arr[ss..se] and
-            // all these elements must be increased by lazy[si]
-            ST[si] += (se - ss + 1) * UP[si];
-      
-            // checking if it is not leaf node because if it is leaf node then we cannot go further
-            if (ss != se)
-            {
-                // Since we are not yet updating children os si, we need to set lazy values for the children
-                UP[si * 2 + 1] += UP[si];
-                UP[si * 2 + 2] += UP[si];
-            }
-      
-            // unset the lazy value for current node as it has been updated
-             UP[si] = 0;
-        }
-      
-        // Out of range
-        if (ss > se || ss > qe || se < qs)
-             return 0;
-      
-        // At this point sure, pending lazy updates are done for current node. So we can return value (same as was for query in our previous post)
-      
-        // If this segment lies in range
-        if (ss >= qs && se <= qe)
-            return ST[si];
-      
-        // If a part of this segment overlaps with the given range
-        int mid = (ss + se) / 2;
-        return getSumUtil(ss, mid, qs, qe, 2 * si + 1) + getSumUtil(mid + 1, se, qs, qe, 2 * si + 2);
-    }
-      
-    // Return sum of elements in range from index qs (query start) to qe (query end).  It mainly uses getSumUtil()
-    static int getSum(int n, int qs, int qe)
-    {
-        // Check for erroneous input values
-        if (qs < 0 || qe > n - 1 || qs > qe)
-        {
-            System.out.println("Invalid Input");
-            return -1;
-        }
-      
-        return getSumUtil(0, n - 1, qs, qe, 0);
-    }
-      
+    } 
     /* A recursive function that constructs Segment Tree for array[ss..se]. si is index of current node in segment tree st. */
     static void constructSTUtil(ArrayList<Integer> LeafNodes, int ss, int se, int si)
     {
