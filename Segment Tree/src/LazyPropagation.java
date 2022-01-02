@@ -20,6 +20,8 @@ public class LazyPropagation
         // function)
         if (lazy[si] != 0)
         {
+
+            
             // Make pending updates using value stored in lazy
             // nodes
             tree[si] += (se - ss + 1) * lazy[si];
