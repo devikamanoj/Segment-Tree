@@ -10,6 +10,7 @@ public class SegmentTree
         System.out.println("             SEGMENT TREE");
         System.out.println("             ============\n");
 
+<<<<<<< HEAD
         System.out.print("Enter the number of Leaf Nodes: ");
         size=in.nextInt();
         
@@ -20,6 +21,17 @@ public class SegmentTree
         System.out.println(" -----------");
         System.out.println(" RANGE QUERY");
         System.out.println(" -----------");
+=======
+        System.out.print(" Enter the number of Leaf Nodes: ");
+        size=in.nextInt();
+        
+        // taking the input of the leaf nodes
+        System.out.print(" Enter the Leaf Nodes: ");
+        LeafNodes=InputElements(LeafNodes, size);
+
+        System.out.println("  RANGE QUERY");
+        System.out.println("  -----------");
+>>>>>>> 4f628ef5f0ebfe901a877a04ef88f4f38ddfd762
         System.out.println("\n 1.Minimum Range Query");
         System.out.println(" 2.Maximum Range Query");
         System.out.println(" 3.Persistant Segment Tree");
@@ -40,7 +52,11 @@ public class SegmentTree
                     System.out.print("\n -------------------");
                     System.out.print("\n Minimum Range Query");
                     System.out.print("\n -------------------\n");
+<<<<<<< HEAD
                     MinQueryST.mainMin(LeafNodes,size);
+=======
+                    MinQueryST.mainMin();
+>>>>>>> 4f628ef5f0ebfe901a877a04ef88f4f38ddfd762
                     break;
                 }
                 case 2:
@@ -48,7 +64,11 @@ public class SegmentTree
                     System.out.print("\n -------------------");
                     System.out.print("\n Maximum Range Query");
                     System.out.print("\n -------------------\n");
+<<<<<<< HEAD
                     MaxQueryST.mainMax(LeafNodes,size);
+=======
+                    MaxQueryST.mainMax();
+>>>>>>> 4f628ef5f0ebfe901a877a04ef88f4f38ddfd762
                     break;
                 }
                 case 3:
@@ -76,7 +96,11 @@ public class SegmentTree
                 }
             }
         
+<<<<<<< HEAD
             System.out.print("\nDo you wish to continue? (Y/N) : ");
+=======
+            System.out.print("Do you wish to continue? (Y/N) : ");
+>>>>>>> 4f628ef5f0ebfe901a877a04ef88f4f38ddfd762
             bool=in.next().charAt(0);
             System.out.print("\n");
         }
@@ -84,7 +108,10 @@ public class SegmentTree
        
         in.close();    
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 4f628ef5f0ebfe901a877a04ef88f4f38ddfd762
     static ArrayList<Integer> InputElements(ArrayList <Integer> array, int size)
     {
         for(int i=0; i<size;i++)
