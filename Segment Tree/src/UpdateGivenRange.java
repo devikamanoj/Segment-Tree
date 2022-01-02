@@ -23,10 +23,8 @@ public class UpdateGivenRange
   
         System.out.println("Updated sum of values in given range = " +SumofGivenRange.getSum(size,Range.get(0), Range.get(1)));
     }
-
-        /*  si -> index of current node in segment tree
-        ss and se -> Starting and ending indexes of elements for
-                     which current nodes stores sum.
+    /*  si -> index of current node in segment tree
+        ss and se -> Starting and ending indexes of elements for which current nodes stores sum.
         us and eu -> starting and ending indexes of update query
         ue  -> ending index of update query
         diff -> which we need to add in the range us to ue */
@@ -54,7 +52,9 @@ public class UpdateGivenRange
         }
         // out of range
         if (ss > se || ss > ue || se < us)
+        {
             return;
+        }
         // Current segment is fully in range
         if (ss >= us && se <= ue)
         {
@@ -94,7 +94,9 @@ public class UpdateGivenRange
     {
         // out of range as ss can never be greater than se
         if (ss > se)
+        {
             return;
+        }
       
         /* If there is one element in array, store it in current node of segment tree and return */
         if (ss == se)
