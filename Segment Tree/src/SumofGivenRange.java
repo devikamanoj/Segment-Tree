@@ -16,7 +16,7 @@ public class SumofGivenRange
   
         System.out.println(" Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
     }
-    // Return sum of elements in range from index qs (query start) to qe (query end).  It mainly uses getSumUtil()
+    // Return sum of elements in range from index StartInd_query (query start) to EndInd_query (query end).  It mainly uses getSumUtil()
     static int getSum(int n, int start, int end)
     {
         // Check for erroneous input values
@@ -28,50 +28,41 @@ public class SumofGivenRange
       
         return getSumUtil(0, n - 1, start, end, 0);
     }
-    /*  A recursive function to get the sum of values in given range of the array. The following are parameters for this function.
-        si --> Index of current node in the segment tree.
-            Initially 0 is passed as root is always at'
-            index 0
-        ss & se  --> Starting and ending indexes of the
-            segment represented by current node,
-            i.e., tree[si]
-        qs & qe  --> Starting and ending indexes of query
-            range */
-    static int getSumUtil(int ss, int se, int qs, int qe, int si)
+    // to get the sum of values in given range of the array
+    static int getSumUtil(int StartInd_seg, int EndInd_seg, int StartInd_query, int EndInd_query, int CurrentIndex) 
     {
-        // If lazy flag is set for current node of segment tree, then there are some pending updates. So we need to
+        // If ST flag is set for current node of segment tree, then there are some pending updates. So we need to
         // make sure that the pending updates are done before processing the sub sum query
-        if (UP[si] != 0)
+        if (UP[CurrentIndex] != 0)
         {
             // Make pending updates to this node. Note that this node represents sum of elements in arr[ss..se] and
-            // all these elements must be increased by lazy[si]
-            ST[si] += (se - ss + 1) * UP[si];
+            // all these elements must be increased by ST[CurrentIndex]
+            ST[CurrentIndex] += (EndInd_seg - StartInd_seg + 1) * UP[CurrentIndex];
               
             // checking if it is not leaf node because if it is leaf node then we cannot go further
-            if (ss != se)
+            if (StartInd_seg != EndInd_seg)
             {
-                // Since we are not yet updating children os si, we need to set lazy values for the children
-                UP[si * 2 + 1] += UP[si];
-                UP[si * 2 + 2] += UP[si];
+                // Since we are not yet updating children of CurrentIndex, we need to set ST values for the children
+                UP[CurrentIndex * 2 + 1] += UP[CurrentIndex];
+                UP[CurrentIndex * 2 + 2] += UP[CurrentIndex];
             }
-            // unset the lazy value for current node as it has been updated
-            UP[si] = 0;
+            // unset the ST value for current node as it has been updated
+            UP[CurrentIndex] = 0;
         }
         // Out of range
-        if (ss > se || ss > qe || se < qs)
+        if (StartInd_seg > EndInd_seg || StartInd_seg > EndInd_query || EndInd_seg < StartInd_query)
         {
             System.out.println(" !!! Out Of Range !!!");
             return 0;
         }
-        // At this point sure, pending lazy updates are done for current node. So we can return value
-        // If this segment lies in range
-        if (ss >= qs && se <= qe)
+        // Pending ST updates are done for current node. So we can return value,if this segment lies in range
+        if (StartInd_seg >= StartInd_query && EndInd_seg <= EndInd_query)
         {
-            return ST[si];
+            return ST[CurrentIndex];
         }
         // If a part of this segment overlaps with the given range
-        int mid = (ss + se) / 2;
+        int mid = (StartInd_seg + EndInd_seg) / 2;
         
-        return getSumUtil(ss, mid, qs, qe, 2 * si + 1) + getSumUtil(mid + 1, se, qs, qe, 2 * si + 2);
+        return getSumUtil(StartInd_seg, mid, StartInd_query, EndInd_query, 2 * CurrentIndex + 1) + getSumUtil(mid + 1, EndInd_seg, StartInd_query, EndInd_query, 2 * CurrentIndex + 2);
     }
 }
