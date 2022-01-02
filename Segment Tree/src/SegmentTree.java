@@ -1,12 +1,22 @@
 import java.util.*;
 public class SegmentTree
  {
+    static int size;
+    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws Exception 
     {
-        Scanner in = new Scanner(System.in);
+        ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
         System.out.println("\n             ============");
         System.out.println("             SEGMENT TREE");
         System.out.println("             ============\n");
+
+        System.out.print(" Enter the number of Leaf Nodes: ");
+        size=in.nextInt();
+        
+        // taking the input of the leaf nodes
+        System.out.print(" Enter the Leaf Nodes: ");
+        LeafNodes=InputElements(LeafNodes, size);
+
         System.out.println("  RANGE QUERY");
         System.out.println("  -----------");
         System.out.println("\n 1.Minimum Range Query");
@@ -52,7 +62,7 @@ public class SegmentTree
                     System.out.print("\n -------------------");
                     System.out.print("\n Get sum of the given range");
                     System.out.print("\n -------------------\n");
-                    SumofGivenRange.Sum();
+                    SumofGivenRange.Sum(LeafNodes,size);
                     break;
                 }
                 case 5:
@@ -60,7 +70,7 @@ public class SegmentTree
                     System.out.print("\n -------------------");
                     System.out.print("\n Update the tree and get sum");
                     System.out.print("\n -------------------\n");
-                    UpdateGivenRange.update();
+                    UpdateGivenRange.update(LeafNodes,size);
                     break;  
                 }
             }
@@ -73,5 +83,12 @@ public class SegmentTree
        
         in.close();    
     }
-    
+    static ArrayList<Integer> InputElements(ArrayList <Integer> array, int size)
+    {
+        for(int i=0; i<size;i++)
+        {
+            array.add(in.nextInt());
+        }
+        return array;
+    }
 }

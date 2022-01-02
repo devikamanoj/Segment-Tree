@@ -6,37 +6,24 @@ public class UpdateGivenRange
     static Scanner in = new Scanner(System.in);
     static int size;
     
-    static void update()
+    static void update(ArrayList <Integer> LeafNodes, int size )
     {
-        ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
         ArrayList <Integer> Range = new ArrayList<Integer>();
         ArrayList <Integer> UpRange = new ArrayList<Integer>();
-        System.out.print(" Enter the number of Leaf Nodes: ");
-        size=in.nextInt();
 
-        // taking the input of the leaf nodes
-        System.out.print(" Enter the Leaf Nodes: ");
-        LeafNodes=InputElements(LeafNodes, size);
         constructST(LeafNodes, size);
         
         System.out.print("\n Enter the range to update the tree: ");
-        UpRange=InputElements(UpRange, 2);
+        UpRange=SegmentTree.InputElements(UpRange, 2);
         System.out.print("\n Enter the number to be updated: ");
         int num=in.nextInt();
         updateRange(size, UpRange.get(0), UpRange.get(1), num);
         System.out.print("\n Enter the range to compute the sum: ");
-        Range=InputElements(Range, 2);
+        Range=SegmentTree.InputElements(Range, 2);
   
         System.out.println("Updated sum of values in given range = " +SumofGivenRange.getSum(size,Range.get(0), Range.get(1)));
     }
-    static ArrayList<Integer> InputElements(ArrayList <Integer> array, int size)
-    {
-        for(int i=0; i<size;i++)
-        {
-            array.add(in.nextInt());
-        }
-        return array;
-    }
+
         /*  si -> index of current node in segment tree
         ss and se -> Starting and ending indexes of elements for
                      which current nodes stores sum.

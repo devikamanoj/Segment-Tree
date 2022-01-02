@@ -5,35 +5,29 @@ public class SumofGivenRange
     static int [] UP=UpdateGivenRange.UP;
     static Scanner in = new Scanner(System.in);
     
-    static void Sum()
+    static void Sum(ArrayList<Integer> LeafNodes,int size)
     {
         ArrayList <Integer> Range = new ArrayList<Integer>();
-        ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
-        System.out.print(" Enter the number of Leaf Nodes: ");
-        int size=in.nextInt();
 
-        // taking the input of the leaf nodes
-        System.out.print(" Enter the Leaf Nodes: ");
-        LeafNodes=UpdateGivenRange.InputElements(LeafNodes, size);
         UpdateGivenRange.constructST(LeafNodes, size);
+
         System.out.print("\n Enter the range to compute the sum: ");
-        Range=UpdateGivenRange.InputElements(Range, 2);
+        Range=SegmentTree.InputElements(Range, 2);
   
-        System.out.println("Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
+        System.out.println(" Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
     }
     // Return sum of elements in range from index qs (query start) to qe (query end).  It mainly uses getSumUtil()
-    static int getSum(int n, int qs, int qe)
+    static int getSum(int n, int start, int end)
     {
         // Check for erroneous input values
-        if (qs < 0 || qe > n - 1 || qs > qe)
+        if (start < 0 || end > n - 1 || start > end)
         {
-            System.out.println("Invalid Input");
+            System.out.println(" Invalid Input");
             return -1;
         }
       
-        return getSumUtil(0, n - 1, qs, qe, 0);
+        return getSumUtil(0, n - 1, start, end, 0);
     }
-          
     /*  A recursive function to get the sum of values in given range of the array. The following are parameters for this function.
         si --> Index of current node in the segment tree.
             Initially 0 is passed as root is always at'
@@ -66,9 +60,10 @@ public class SumofGivenRange
         // Out of range
         if (ss > se || ss > qe || se < qs)
         {
+            System.out.println(" !!! Out Of Range !!!");
             return 0;
         }
-        // At this point sure, pending lazy updates are done for current node. So we can return value (same as was for query in our previous post)
+        // At this point sure, pending lazy updates are done for current node. So we can return value
         // If this segment lies in range
         if (ss >= qs && se <= qe)
         {
