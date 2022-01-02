@@ -38,15 +38,22 @@ public class SegmentTree
 	        	 break;
 	        
 	        case 3:
+	        	 System.out.print("\n-----------------------");
+	        	 System.out.print("\nPersistant Segment Tree");
+	        	 System.out.print("\n-----------------------\n");
 	        	break;
 	        
 	        case 4:
+	        	 System.out.print("\n----------------");
+	        	 System.out.print("\nLazy Propogation");
+	        	 System.out.print("\n----------------\n");
 	        	break;
         }
        
         System.out.print("Do you wish to continue? (Y/N) : ");
         bool=in.next().charAt(0);
         System.out.print("\n");
+        
         }while(bool=='Y'||bool=='y');
        
         in.close();
