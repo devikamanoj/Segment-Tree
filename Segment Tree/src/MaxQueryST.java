@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MaxQueryST
@@ -75,18 +76,15 @@ public class MaxQueryST
 		return st;
 	}
 	
-	static void mainMax()
+	static void mainMax(ArrayList <Integer> LeafNodes, int size)
 	{
 		Scanner in =new Scanner(System.in);
     	int n, arr[];
-    	System.out.print("Enter size of the array : ");
-    	n=in.nextInt();
-    	
+    	n=size;
     	arr=new int[n];
-    	System.out.println("Enter elements for the array ");
     	for(int i=0;i<n;i++)
     	{
-    		arr[i]=in.nextInt();
+    		arr[i]=LeafNodes.get(i);
     	}
     	int ST[]=ConstructST(arr, n);
     	
