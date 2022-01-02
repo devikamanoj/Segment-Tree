@@ -23,101 +23,92 @@ public class UpdateGivenRange
   
         System.out.println("Updated sum of values in given range = " +SumofGivenRange.getSum(size,Range.get(0), Range.get(1)));
     }
-    /*  si -> index of current node in segment tree
-        ss and se -> Starting and ending indexes of elements for which current nodes stores sum.
-        us and eu -> starting and ending indexes of update query
-        ue  -> ending index of update query
-        diff -> which we need to add in the range us to ue */
-    static void updateRangeUtil(int si, int ss, int se, int us, int ue, int diff)
+    static void updateRangeUtil(int CurrentIndex, int StartIndex, int EndIndex, int StartIndex_query, int EndIndex_query, int Element)
     {
-        // If lazy value is non-zero for current node of segment tree, then there are some pending updates. So we need
-        // to make sure that the pending updates are done before making new updates. Because this value may be used by
-        // parent after recursive calls (See last line of this function)
-        if (UP[si] != 0)
+        // If ST value is non-zero for current node of segment tree, then there are some pending updates. So we need
+        // to make sure that the pending updates are done before making new updates. This value may be used by
+        // parent after recursive calls 
+        if (UP[CurrentIndex] != 0)
         {
-            // Make pending updates using value stored in lazy nodes
-            ST[si] += (se - ss + 1) * UP[si];
+            // Make pending updates using value stored in ST nodes
+            ST[CurrentIndex] += (EndIndex - StartIndex + 1) * UP[CurrentIndex];
       
             // checking if it is not leaf node because if it is leaf node then we cannot go further
-            if (ss != se)
+            if (StartIndex != EndIndex)
             {
                 // We can postpone updating children we don't need their new values now.
-                // Since we are not yet updating children of si, we need to set lazy flags for the children
-                UP[si * 2 + 1] += UP[si];
-                UP[si * 2 + 2] += UP[si];
+                // Since we are not yet updating children of CurrentIndex, we need to set ST flags for the children
+                UP[CurrentIndex * 2 + 1] += UP[CurrentIndex];
+                UP[CurrentIndex * 2 + 2] += UP[CurrentIndex];
             }
       
-            // Set the lazy value for current node as 0 as it has been updated
-                UP[si] = 0;
+            // Set the ST value for current node as 0 as it has been updated
+            UP[CurrentIndex] = 0;
         }
         // out of range
-        if (ss > se || ss > ue || se < us)
+        if (StartIndex > EndIndex || StartIndex > EndIndex_query || EndIndex < StartIndex_query)
         {
             return;
         }
         // Current segment is fully in range
-        if (ss >= us && se <= ue)
+        if (StartIndex >= StartIndex_query && EndIndex <= EndIndex_query)
         {
             // Add the difference to current node
-            ST[si] += (se - ss + 1) * diff;
+            ST[CurrentIndex] += (EndIndex - StartIndex + 1) * Element;
       
             // same logic for checking leaf node or not
-            if (ss != se)
+            if (StartIndex != EndIndex)
             {
-                // This is where we store values in lazy nodes,  rather than updating the segment tree itelf
-                // Since we don't need these updated values now we postpone updates by storing values in lazy[]
-                UP[si * 2 + 1] += diff;
-                UP[si * 2 + 2] += diff;
+                // This is where we store values in ST nodes,  rather than updating the segment tree itelf
+                // Since we don't need these updated values now we postpone updates by storing values in ST[]
+                UP[CurrentIndex * 2 + 1] += Element;
+                UP[CurrentIndex * 2 + 2] += Element;
             }
             return;
         }
       
         // If not completely in rang, but overlaps, recur for children,
-        int mid = (ss + se) / 2;
-        updateRangeUtil(si * 2 + 1, ss, mid, us, ue, diff);
-        updateRangeUtil(si * 2 + 2, mid + 1, se, us, ue, diff);
+        int mid = (StartIndex + EndIndex) / 2;
+        updateRangeUtil(CurrentIndex * 2 + 1, StartIndex, mid, StartIndex_query, EndIndex_query, Element);
+        updateRangeUtil(CurrentIndex * 2 + 2, mid + 1, EndIndex, StartIndex_query, EndIndex_query, Element);
       
         // And use the result of children calls to update this node
-        ST[si] = ST[si * 2 + 1] + ST[si * 2 + 2];
+        ST[CurrentIndex] = ST[CurrentIndex * 2 + 1] + ST[CurrentIndex * 2 + 2];
     }
       
     // Function to update a range of values in segmenttree
-    /*  us and eu -> starting and ending indexes of update query
-        ue  -> ending index of update query
-        diff -> which we need to add in the range us to ue */
-    static void updateRange(int n, int us, int ue, int diff)  
+    static void updateRange(int n, int StartIndex_query, int EndIndex_query, int Element)  
     {
-        updateRangeUtil(0, 0, n - 1, us, ue, diff);
+        updateRangeUtil(0, 0, n - 1, StartIndex_query, EndIndex_query, Element);
     } 
-    /* A recursive function that constructs Segment Tree for array[ss..se]. si is index of current node in segment tree st. */
-    static void constructSTUtil(ArrayList<Integer> LeafNodes, int ss, int se, int si)
+    /* A recursive function that constructs Segment Tree for array[StartIndex..EndIndex]. CurrentIndex is index of current node in segment tree st. */
+    static void constructSTUtil(ArrayList<Integer> LeafNodes, int StartIndex, int EndIndex, int CurrentIndex)
     {
-        // out of range as ss can never be greater than se
-        if (ss > se)
+        // out of range as StartIndex can never be greater than EndIndex
+        if (StartIndex > EndIndex)
         {
             return;
         }
       
         /* If there is one element in array, store it in current node of segment tree and return */
-        if (ss == se)
+        if (StartIndex == EndIndex)
         {
-            ST[si] = LeafNodes.get(ss);
+            ST[CurrentIndex] = LeafNodes.get(StartIndex);
             return;
         }
       
         /* If there are more than one elements, then recur for left and right subtrees and store the sum of values in this node */
-        int mid = (ss + se) / 2;
-        constructSTUtil(LeafNodes, ss, mid, si * 2 + 1);
-        constructSTUtil(LeafNodes, mid + 1, se, si * 2 + 2);
+        int mid = (StartIndex + EndIndex) / 2;
+        constructSTUtil(LeafNodes, StartIndex, mid, CurrentIndex * 2 + 1);
+        constructSTUtil(LeafNodes, mid + 1, EndIndex, CurrentIndex * 2 + 2);
       
-        ST[si] = ST[si * 2 + 1] + ST[si * 2 + 2];
+        ST[CurrentIndex] = ST[CurrentIndex * 2 + 1] + ST[CurrentIndex * 2 + 2];
     }
       
-    /* Function to construct segment tree from given array. This function allocates memory for segment tree and
-    calls constructSTUtil() to fill the allocated memory */
+    /* Function to construct segment tree from given array. This function allocates memory for segment tree and calls constructSTUtil() to fill the allocated memory */
     static void constructST(ArrayList<Integer> LeafNodes, int size)
     {
-            // Fill the allocated memory st
+        // Fill the allocated memory st
         constructSTUtil(LeafNodes, 0, size - 1, 0);
     } 
 }
