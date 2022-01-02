@@ -4,31 +4,39 @@ public class LazyPropagation
     static int ST[] = new int[1000];  // To store segment tree
     static int UP[] = new int[1000];  // To store pending updates
     static Scanner in = new Scanner(System.in);
-    // Driver program to test above functions
     public static void main(String args[])
     {
-
         ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
-        System.out.println(" Enter the number of Leaf Nodes: ");
+        ArrayList <Integer> Range = new ArrayList<Integer>();
+        ArrayList <Integer> UpRange = new ArrayList<Integer>();
+        System.out.print(" Enter the number of Leaf Nodes: ");
         int size=in.nextInt();
 
         // taking the input of the leaf nodes
-        InputElements(LeafNodes, size);
-  
+        System.out.print(" Enter the Leaf Nodes: ");
+        LeafNodes=InputElements(LeafNodes, size);
         constructST(LeafNodes, size);
+
+        System.out.print("\n Enter the range to compute the sum: ");
+        Range=InputElements(Range, 2);
   
-        System.out.println("Sum of values in given range = " +getSum(size, 1, 3));
+        System.out.println("Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
+        
+        System.out.print("\n Enter the range to update the tree: ");
+        UpRange=InputElements(UpRange, 2);
+        System.out.print("\n Enter the number to be updated: ");
+        int num=in.nextInt();
+        updateRange(size, UpRange.get(0), UpRange.get(1), num);
   
-        updateRange(size, 1, 5, 10);
-  
-        System.out.println("Updated sum of values in given range = " +getSum(size, 1, 3));
+        System.out.println("Updated sum of values in given range = " +getSum(size,Range.get(0), Range.get(1)));
     }
-    static void InputElements(ArrayList <Integer> LeafNodes, int size)
+    static ArrayList<Integer> InputElements(ArrayList <Integer> array, int size)
     {
         for(int i=0; i<size;i++)
         {
-            LeafNodes.add(in.nextInt());
+            array.add(in.nextInt());
         }
+        return array;
     }
         /*  si -> index of current node in segment tree
         ss and se -> Starting and ending indexes of elements for
