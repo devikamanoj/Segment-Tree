@@ -80,7 +80,8 @@ public class LazyPropagation
     /*  us and eu -> starting and ending indexes of update query
         ue  -> ending index of update query
         diff -> which we need to add in the range us to ue */
-    void updateRange(int n, int us, int ue, int diff)  {
+    void updateRange(int n, int us, int ue, int diff)  
+    {
         updateRangeUtil(0, 0, n - 1, us, ue, diff);
     }
   
