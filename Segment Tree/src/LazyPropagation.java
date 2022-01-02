@@ -1,27 +1,34 @@
+import java.util.*;
 public class LazyPropagation 
 {       
-
     static int ST[] = new int[1000];  // To store segment tree
     static int UP[] = new int[1000];  // To store pending updates
-  
-
+    static Scanner in = new Scanner(System.in);
     // Driver program to test above functions
     public static void main(String args[])
     {
-        int arr[] = {1, 3, 5, 7, 9, 11};
-        int n = arr.length;
+
+        ArrayList <Integer> LeafNodes = new ArrayList<Integer>();
+        System.out.println(" Enter the number of Leaf Nodes: ");
+        int size=in.nextInt();
+
+        // taking the input of the leaf nodes
+        InputElements(LeafNodes, size);
   
-        // Build segment tree from given array
-        constructST(arr, n);
+        constructST(LeafNodes, size);
   
-        // Print sum of values in array from index 1 to 3
-        System.out.println("Sum of values in given range = " +getSum(n, 1, 3));
+        System.out.println("Sum of values in given range = " +getSum(size, 1, 3));
   
-        // Add 10 to all nodes at indexes from 1 to 5.
-        updateRange(n, 1, 5, 10);
+        updateRange(size, 1, 5, 10);
   
-        // Find sum after the value is updated
-        System.out.println("Updated sum of values in given range = " +getSum(n, 1, 3));
+        System.out.println("Updated sum of values in given range = " +getSum(size, 1, 3));
+    }
+    static void InputElements(ArrayList <Integer> LeafNodes, int size)
+    {
+        for(int i=0; i<size;i++)
+        {
+            LeafNodes.add(in.nextInt());
+        }
     }
         /*  si -> index of current node in segment tree
         ss and se -> Starting and ending indexes of elements for
@@ -149,7 +156,7 @@ public class LazyPropagation
     }
       
     /* A recursive function that constructs Segment Tree for array[ss..se]. si is index of current node in segment tree st. */
-    static void constructSTUtil(int arr[], int ss, int se, int si)
+    static void constructSTUtil(ArrayList<Integer> LeafNodes, int ss, int se, int si)
     {
         // out of range as ss can never be greater than se
         if (ss > se)
@@ -158,23 +165,23 @@ public class LazyPropagation
         /* If there is one element in array, store it in current node of segment tree and return */
         if (ss == se)
         {
-            ST[si] = arr[ss];
+            ST[si] = LeafNodes.get(ss);
             return;
         }
       
         /* If there are more than one elements, then recur for left and right subtrees and store the sum of values in this node */
         int mid = (ss + se) / 2;
-        constructSTUtil(arr, ss, mid, si * 2 + 1);
-        constructSTUtil(arr, mid + 1, se, si * 2 + 2);
+        constructSTUtil(LeafNodes, ss, mid, si * 2 + 1);
+        constructSTUtil(LeafNodes, mid + 1, se, si * 2 + 2);
       
         ST[si] = ST[si * 2 + 1] + ST[si * 2 + 2];
     }
       
     /* Function to construct segment tree from given array. This function allocates memory for segment tree and
     calls constructSTUtil() to fill the allocated memory */
-    static void constructST(int arr[], int n)
+    static void constructST(ArrayList<Integer> LeafNodes, int size)
     {
             // Fill the allocated memory st
-        constructSTUtil(arr, 0, n - 1, 0);
+        constructSTUtil(LeafNodes, 0, size - 1, 0);
     } 
 }
