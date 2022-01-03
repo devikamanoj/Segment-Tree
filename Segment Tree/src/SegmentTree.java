@@ -15,23 +15,13 @@ public class SegmentTree
         size=in.nextInt();
         
         // taking the input of the leaf nodes
-        System.out.println("Enter the Leaf Nodes: ");
+        System.out.print("Enter the Leaf Nodes: ");
         LeafNodes=InputElements(LeafNodes, size);
         
         System.out.println();
         System.out.println(" -----------");
         System.out.println(" RANGE QUERY");
         System.out.println(" -----------");
-
-        System.out.print(" Enter the number of Leaf Nodes: ");
-        size=in.nextInt();
-        
-        // taking the input of the leaf nodes
-        System.out.print(" Enter the Leaf Nodes: ");
-        LeafNodes=InputElements(LeafNodes, size);
-
-        System.out.println("  RANGE QUERY");
-        System.out.println("  -----------");
 
         System.out.println("\n 1.Minimum Range Query");
         System.out.println(" 2.Maximum Range Query");

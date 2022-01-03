@@ -126,7 +126,7 @@ public class PersistantST
  	 		System.out.print(query(version[1], 0, n - 1, start, end));
  	 		
  	 	    	count=count+1;
- 	 		System.out.print("\nDo you wish to continue? (Y/N) : ");
+ 	 		System.out.print("\n\nDo you wish to continue the persistent Segment tree ? (Y/N) : ");
 			ch=in.next().charAt(0);
 		        System.out.print("\n");
  		}
