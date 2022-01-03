@@ -119,17 +119,16 @@ public class PersistantST
  	 		upgrade(version[0], version[1], 0, n - 1, nodeIndex, value);
  	 		
  	 		System.out.print("Enter starting index of query : ");
- 	    	int start=in.nextInt();
- 	    	System.out.print("Enter ending index of query : ");
- 	    	int end=in.nextInt();
+			int start=in.nextInt();
+			System.out.print("Enter ending index of query : ");
+			int end=in.nextInt();
  	 		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
  	 		System.out.print(query(version[1], 0, n - 1, start, end));
  	 		
- 	 	    count=count+1;
+ 	 	    	count=count+1;
  	 		System.out.print("\nDo you wish to continue? (Y/N) : ");
-            ch=in.next().charAt(0);
-            System.out.print("\n");
- 			
+			ch=in.next().charAt(0);
+		        System.out.print("\n");
  		}
  		while(ch=='y'||ch=='Y');
 	}
