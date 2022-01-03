@@ -10,6 +10,19 @@ public class SegmentTree
         System.out.println("             SEGMENT TREE");
         System.out.println("             ============\n");
 
+
+        System.out.print("Enter the number of Leaf Nodes: ");
+        size=in.nextInt();
+        
+        // taking the input of the leaf nodes
+        System.out.println("Enter the Leaf Nodes: ");
+        LeafNodes=InputElements(LeafNodes, size);
+        
+        System.out.println();
+        System.out.println(" -----------");
+        System.out.println(" RANGE QUERY");
+        System.out.println(" -----------");
+
         System.out.print(" Enter the number of Leaf Nodes: ");
         size=in.nextInt();
         
@@ -19,6 +32,7 @@ public class SegmentTree
 
         System.out.println("  RANGE QUERY");
         System.out.println("  -----------");
+
         System.out.println("\n 1.Minimum Range Query");
         System.out.println(" 2.Maximum Range Query");
         System.out.println(" 3.Persistant Segment Tree");
@@ -52,24 +66,25 @@ public class SegmentTree
                 }
                 case 3:
                 {
-                    System.out.print("\n -------------------");
+                    System.out.print("\n -----------------------");
                     System.out.print("\n Persistent Segment Tree");
-                    System.out.print("\n -------------------\n");
+                    System.out.print("\n -----------------------\n");
+                    PersistantST.mainPersistent(LeafNodes,size);
                     break;
                 }
                 case 4:
                 {
-                    System.out.print("\n -------------------");
+                    System.out.print("\n --------------------------");
                     System.out.print("\n Get sum of the given range");
-                    System.out.print("\n -------------------\n");
+                    System.out.print("\n --------------------------\n");
                     SumofGivenRange.Sum(LeafNodes,size);
                     break;
                 }
                 case 5:
                 {
-                    System.out.print("\n -------------------");
+                    System.out.print("\n ---------------------------");
                     System.out.print("\n Update the tree and get sum");
-                    System.out.print("\n -------------------\n");
+                    System.out.print("\n ---------------------------\n");
                     UpdateGivenRange.update(LeafNodes,size);
                     break;  
                 }
