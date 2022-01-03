@@ -10,7 +10,7 @@ public class SegmentTree
         System.out.println("             SEGMENT TREE");
         System.out.println("             ============\n");
 
-<<<<<<< HEAD
+
         System.out.print("Enter the number of Leaf Nodes: ");
         size=in.nextInt();
         
@@ -22,7 +22,7 @@ public class SegmentTree
         System.out.println(" -----------");
         System.out.println(" RANGE QUERY");
         System.out.println(" -----------");
-=======
+
         System.out.print(" Enter the number of Leaf Nodes: ");
         size=in.nextInt();
         
@@ -32,7 +32,7 @@ public class SegmentTree
 
         System.out.println("  RANGE QUERY");
         System.out.println("  -----------");
->>>>>>> f689c67cc93624cae11fad7a36f3169f5f6718a2
+
         System.out.println("\n 1.Minimum Range Query");
         System.out.println(" 2.Maximum Range Query");
         System.out.println(" 3.Persistant Segment Tree");
