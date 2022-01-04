@@ -16,7 +16,6 @@ public class SumofGivenRange
   
         System.out.println(" Sum of values in given range = " +getSum(size, Range.get(0), Range.get(1)));
     }
-    // Return sum of elements in range from index StartInd_query (query start) to EndInd_query (query end).  It mainly uses getSumUtil()
     static int getSum(int n, int start, int end)
     {
         // Check for erroneous input values
@@ -31,12 +30,8 @@ public class SumofGivenRange
     // to get the sum of values in given range of the array
     static int getSumUtil(int StartInd_seg, int EndInd_seg, int StartInd_query, int EndInd_query, int CurrentIndex) 
     {
-        // If ST flag is set for current node of segment tree, then there are some pending updates. So we need to
-        // make sure that the pending updates are done before processing the sub sum query
         if (UP[CurrentIndex] != 0)
         {
-            // Make pending updates to this node. Note that this node represents sum of elements in arr[ss..se] and
-            // all these elements must be increased by ST[CurrentIndex]
             ST[CurrentIndex] += (EndInd_seg - StartInd_seg + 1) * UP[CurrentIndex];
               
             // checking if it is not leaf node because if it is leaf node then we cannot go further
@@ -52,7 +47,7 @@ public class SumofGivenRange
         // Out of range
         if (StartInd_seg > EndInd_seg || StartInd_seg > EndInd_query || EndInd_seg < StartInd_query)
         {
-            System.out.println(" !!! Out Of Range !!!");
+            //out of range
             return 0;
         }
         // Pending ST updates are done for current node. So we can return value,if this segment lies in range
