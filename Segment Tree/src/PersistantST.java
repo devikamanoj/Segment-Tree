@@ -113,7 +113,6 @@ public class PersistantST
  		{
  			System.out.print("Enter node index : ");
  			nodeIndex=in.nextInt();
-<<<<<<< HEAD
 
  			if(nodeIndex>n)
  			{
@@ -139,24 +138,6 @@ public class PersistantST
             ch=in.next().charAt(0);
             System.out.print("\n");
  			
-=======
- 			System.out.print("Enter value : ");
- 			value=in.nextInt();
- 			version[count] = new node(null, null, 0);
- 	 		upgrade(version[0], version[1], 0, n - 1, nodeIndex, value);
- 	 		
- 	 		System.out.print("Enter starting index of query : ");
-			int start=in.nextInt();
-			System.out.print("Enter ending index of query : ");
-			int end=in.nextInt();
- 	 		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
- 	 		System.out.print(query(version[1], 0, n - 1, start, end));
- 	 		
- 	 	    	count=count+1;
- 	 		System.out.print("\n\nDo you wish to continue the persistent Segment tree ? (Y/N) : ");
-			ch=in.next().charAt(0);
-		        System.out.print("\n");
->>>>>>> 46b655a303e2f5f4b61919aed0977a55ea3e1f50
  		}
  		while(ch=='y'||ch=='Y');
 	}
