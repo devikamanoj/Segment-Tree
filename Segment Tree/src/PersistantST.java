@@ -106,27 +106,35 @@ public class PersistantST
  		// Storing root node for version-0
  		version[0] = root;
  	
- 		int count=1;
+ 		int count=1,ct=0;
  		char ch='y';
  		int nodeIndex,value;
  		do
  		{
- 			System.out.print("\nEnter node index : ");
+ 			System.out.print("Enter node index : ");
  			nodeIndex=in.nextInt();
- 			System.out.print("Enter value : ");
- 			value=in.nextInt();
- 			version[count] = new node(null, null, 0);
- 	 		upgrade(version[0], version[1], 0, n - 1, nodeIndex, value);
- 	 		
- 	 		System.out.print("Enter starting index of query : ");
- 	    	int start=in.nextInt();
- 	    	System.out.print("Enter ending index of query : ");
- 	    	int end=in.nextInt();
- 	 		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
- 	 		System.out.print(query(version[1], 0, n - 1, start, end));
- 	 		
- 	 	    count=count+1;
- 	 		System.out.print("\nDo you wish to continue? (Y/N) : ");
+
+ 			if(nodeIndex>n)
+ 			{
+ 				System.out.println("Node Index out of range!!");
+ 			}
+ 			else
+ 			{
+ 				System.out.print("Enter value : ");
+ 	 			value=in.nextInt();
+ 	 			version[count] = new node(null, null, 0);
+ 	 	 		upgrade(version[ct], version[count], 0, n - 1, nodeIndex, value);
+ 	 	 		
+ 	 	 		System.out.print("Enter starting index of query : ");
+ 	 	    	int start=in.nextInt();
+ 	 	    	System.out.print("Enter ending index of query : ");
+ 	 	    	int end=in.nextInt();
+ 	 	 		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
+ 	 	 		System.out.print(query(version[count], 0, n - 1, start, end));
+ 	 	 		count=count+1;
+ 	 	 		ct=ct+1;
+ 			}
+ 	 		System.out.print("\nDo you wish to continue in the persistent segment tree? (Y/N) : ");
             ch=in.next().charAt(0);
             System.out.print("\n");
  			

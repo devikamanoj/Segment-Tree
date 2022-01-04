@@ -94,10 +94,19 @@ public class MinQueryST
     	System.out.print("Enter ending index of query : ");
     	end=in.nextInt();
     	 
-    	int small=RangeMinQuery(n, start, end);
-    	System.out.println("\nSmallest Element in the range "
-    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+small);
-    //	in.close();
+    	int small=0;
+    	if(start>0 || end>n)
+    	{
+    		small=RangeMinQuery(n, start, end);
+    		System.out.println("Smallest Element in the range ("
+	    			+start+"-"+end+") is: "+small);
+    	}
+    	else
+    	{
+	    	small=RangeMinQuery(n, start, end);
+	    	System.out.println("Smallest Element in the range "
+	    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+small);
+    	}
 	}
     
 }

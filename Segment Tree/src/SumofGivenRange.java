@@ -55,6 +55,7 @@ public class SumofGivenRange
             System.out.println(" !!! Out Of Range !!!");
             return 0;
         }
+        else
         // Pending ST updates are done for current node. So we can return value,if this segment lies in range
         if (StartInd_seg >= StartInd_query && EndInd_seg <= EndInd_query)
         {

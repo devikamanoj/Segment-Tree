@@ -94,9 +94,19 @@ public class MaxQueryST
     	System.out.print("Enter ending index of query : ");
     	end=in.nextInt();
     	 
-    	int large=RangeMaxQuery(ST,n, start, end);
-    	System.out.println("\nLargest Element in the range "
-    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+large);
+    	int large=0;
+    	if(start>0 || end>n)
+    	{
+    		large=RangeMaxQuery(ST,n, start, end);;
+    		System.out.println("Largest Element in the range ("
+	    			+start+"-"+end+ ") is: "+large);
+    	}
+    	else
+    	{
+	    	large=RangeMaxQuery(ST,n, start, end);
+	    	System.out.println("Largest Element in the range "
+	    			+start+"("+arr[start]+") - "+end+"("+arr[end]+")  is: "+large);
+    	}
    
 	}
 
