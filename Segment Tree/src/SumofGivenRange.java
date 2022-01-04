@@ -52,7 +52,6 @@ public class SumofGivenRange
         // Out of range
         if (StartInd_seg > EndInd_seg || StartInd_seg > EndInd_query || EndInd_seg < StartInd_query)
         {
-            System.out.println(" !!! Out Of Range !!!");
             return 0;
         }
         else
