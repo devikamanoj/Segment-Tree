@@ -14,7 +14,7 @@ public class SegmentTree
         size=in.nextInt();
         
         // taking the input of the leaf nodes
-        System.out.println("Enter the Leaf Nodes: ");
+        System.out.print("Enter the Leaf Nodes: ");
         LeafNodes=InputElements(LeafNodes, size);
         
         System.out.println();
@@ -91,7 +91,7 @@ public class SegmentTree
     {
         for(int i=0; i<size;i++)
         {
-        			array.add(in.nextInt());
+        	array.add(in.nextInt());
         }
         return array;
     }
