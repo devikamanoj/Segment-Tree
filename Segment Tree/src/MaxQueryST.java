@@ -64,7 +64,7 @@ public class MaxQueryST
 	static int[] ConstructST(int arr[], int size)
 	{
 
-		// Height of segment tree
+		// Height of segment tree= ceil(log2(N)), N-> leaf nodes
 		int x = (int)Math.ceil(Math.log(size) / Math.log(2));
 
 		// Maximum size of segment tree

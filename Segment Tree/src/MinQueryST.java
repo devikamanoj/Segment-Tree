@@ -3,14 +3,6 @@ import java.util.Scanner;
 public class MinQueryST
 {
 	static int st[];
-	static int getMin(int x, int y) 
-	{
-		int m=0;
-		m= (x < y) ? x : y;
-		return m;
-
-	}
-
 	// To get the middle index
 	static int getMid(int s, int e) 
 	{
@@ -30,7 +22,7 @@ public class MinQueryST
 			return Integer.MAX_VALUE;
 		
 		int mid=getMid(SI,EI);
-		return getMin(RMQUtilFunc(SI,mid,SQ,EQ, (2*index+1)),
+		return Math.min(RMQUtilFunc(SI,mid,SQ,EQ, (2*index+1)),
 				RMQUtilFunc(mid+1,EI,SQ,EQ,2*index+2));
 	}
 	
@@ -58,7 +50,7 @@ public class MinQueryST
 		// If there are more than one elements, then recur for left and
 		// right subtrees and store the minimum of two values in this node
 		int mid = getMid(SI, EI);
-		st[CurrIndex] = getMin(constructSTUtil(arr, SI, mid, CurrIndex * 2 + 1),
+		st[CurrIndex] = Math.min(constructSTUtil(arr, SI, mid, CurrIndex * 2 + 1),
 				constructSTUtil(arr, mid + 1, EI, CurrIndex * 2 + 2));
 		
 		return st[CurrIndex];
