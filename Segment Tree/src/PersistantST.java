@@ -129,8 +129,15 @@ public class PersistantST
  	 	    	int start=in.nextInt();
  	 	    	System.out.print("Enter ending index of query : ");
  	 	    	int end=in.nextInt();
- 	 	 		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
- 	 	 		System.out.print(query(version[count], 0, n - 1, start, end));
+ 	 	    	if(start>0 && end<n)
+ 	 	    	{
+ 	 	    		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
+ 	 	 	 		System.out.print(query(version[count], 0, n - 1, start, end));
+ 	 	    	}
+ 	 	    	else
+ 	 	    	{
+ 	 	    		System.out.print("Sum of nodes of query range "+start+"-"+end+" is : -1");
+ 	 	    	}
  	 	 		count=count+1;
  	 	 		ct=ct+1;
  			}
