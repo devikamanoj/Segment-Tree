@@ -91,14 +91,7 @@ public class SegmentTree
     {
         for(int i=0; i<size;i++)
         {
-        	try
-        	{
         		array.add(in.nextInt());
-        	}
-        	catch(Exception e)
-        	{
-        		System.out.println("Out of bounds!!");
-        	}
         }
         return array;
     }

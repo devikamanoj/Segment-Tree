@@ -6,7 +6,7 @@ public class PersistantST
 	static class node
 	{
 		int sum;
-		node left, right;
+		node left, right;//children nodes
 	    
 		node(node l, node r, int v)
 		{
@@ -21,7 +21,7 @@ public class PersistantST
 	
 	static void Version0(node n, int low, int high)
 	{
-		if (low == high)
+		if (low == high)//only one element in array
 		{
 			n.sum = arr[low];
 			return;
@@ -32,10 +32,11 @@ public class PersistantST
 		n.right = new node(null, null, 0);
 		Version0(n.left, low, mid);
 		Version0(n.right, mid + 1, high);
-		n.sum = n.left.sum + n.right.sum;
+		n.sum = n.left.sum + n.right.sum;//sum of initial version
 	}
 	
 	//Upgrading to newer versions
+	//value - new number 
 	static void upgrade(node prev, node curr, int low,int high, int index, int value)
 	{
 		if (index > high || index < low || low > high)
@@ -49,7 +50,7 @@ public class PersistantST
 		
 		int mid = (low + high) / 2;
 		
-		if (index <= mid)
+		if (index <= mid)//left
 		{
 			// Link to right child of previous version
 			curr.right = prev.right;
@@ -129,7 +130,7 @@ public class PersistantST
  	 	    	int start=in.nextInt();
  	 	    	System.out.print("Enter ending index of query : ");
  	 	    	int end=in.nextInt();
- 	 	    	if(start>0 && end<n)
+ 	 	    	if(start>=0 && end<n)
  	 	    	{
  	 	    		System.out.print("In version "+count+" , query ("+start+" - "+end+") sum is : ");
  	 	 	 		System.out.print(query(version[count], 0, n - 1, start, end));

@@ -22,11 +22,11 @@ public class MinQueryST
 	//To get minimum in the given range
 	static int RMQUtilFunc(int SI, int EI, int SQ, int EQ, int index)
 	{
-		//If segment part of given range, return minimum of the segment
+		//If completely within range, return current value
 		if(SQ<=SI && EQ>= EI)
 			return st[index];
 		
-		if(EI<SQ || SI>EQ)
+		if(EI<SQ || SI>EQ) // out of bound, returns infinity 
 			return Integer.MAX_VALUE;
 		
 		int mid=getMid(SI,EI);
@@ -48,8 +48,7 @@ public class MinQueryST
 
 	static int constructSTUtil(int arr[], int SI, int EI, int CurrIndex)
 	{
-		// If there is one element in array, store it in current
-		// node of EIgment tree and return
+		// If there is one element in array, store it in current node of segment tree and return
 		if (SI == EI)
 		{
 			st[CurrIndex] = arr[SI];
@@ -61,18 +60,18 @@ public class MinQueryST
 		int mid = getMid(SI, EI);
 		st[CurrIndex] = getMin(constructSTUtil(arr, SI, mid, CurrIndex * 2 + 1),
 				constructSTUtil(arr, mid + 1, EI, CurrIndex * 2 + 2));
+		
 		return st[CurrIndex];
 	}
 	static void ConstructST(int arr[],int size)
 	{
 		//Height of segment tree
 		int x = (int) (Math.ceil(Math.log(size) / Math.log(2)));
-
+	//	System.out.println("Ht"+x);
 		//Maximum size of segment tree
 		int max_size = 2 * (int) Math.pow(2, x) - 1;
 		st = new int[max_size]; // allocate memory
 
-		// Fill the allocated memory st
 		constructSTUtil(arr, 0, size - 1, 0);
 	}
 	
