@@ -11,7 +11,7 @@ public class UpdateGivenRange
         ArrayList <Integer> Range = new ArrayList<Integer>();
         ArrayList <Integer> UpRange = new ArrayList<Integer>();
 
-        constructST(LeafNodes, size);
+        constructSTUtil(LeafNodes, 0, size - 1, 0);
         
         System.out.print("\n Enter the range to update the tree: ");
         UpRange=SegmentTree.InputElements(UpRange, 2);
@@ -79,21 +79,17 @@ public class UpdateGivenRange
             return;
         }
       
-        /* If there is one element in array, store it in current node of segment tree and return */
+        // If there is one element in array, store it in current node of segment tree and return 
         if (StartIndex == EndIndex)
         {
             ST[CurrentIndex] = LeafNodes.get(StartIndex);
             return;
         }
+        //If there are more than one elements, then recur for left and right subtrees and store the sum of values in this node
         int mid = (StartIndex + EndIndex) / 2;
         constructSTUtil(LeafNodes, StartIndex, mid, CurrentIndex * 2 + 1);
         constructSTUtil(LeafNodes, mid + 1, EndIndex, CurrentIndex * 2 + 2);
       
         ST[CurrentIndex] = ST[CurrentIndex * 2 + 1] + ST[CurrentIndex * 2 + 2];
     }
-    static void constructST(ArrayList<Integer> LeafNodes, int size)
-    {
-        // Fill the allocated memory st
-        constructSTUtil(LeafNodes, 0, size - 1, 0);
-    } 
 }
