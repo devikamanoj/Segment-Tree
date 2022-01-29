@@ -39,7 +39,7 @@ public class PersistantST
 	//value - new number 
 	static void upgrade(node prev, node curr, int low,int high, int index, int value)
 	{
-		if (index > high || index < low || low > high)
+		if (index > high || index < low || low > high)//out of bounds
 			return;
 	
 		if (low == high)
@@ -70,7 +70,7 @@ public class PersistantST
 	
 			upgrade(prev.right, curr.right, mid + 1,high, index, value);
 		}
-		// calculating the sum of current version including the previous and current version
+		// sum of current version including the previous and current version
 		curr.sum = curr.left.sum + curr.right.sum;
 	}
 	
