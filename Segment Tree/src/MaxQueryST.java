@@ -96,7 +96,7 @@ public class MaxQueryST
     	end=in.nextInt();
     	 
     	int large=0;
-    	if(start>0 || end>n)
+    	if(start<0 || end>=n)
     	{
     		large=RangeMaxQuery(ST,n, start, end);;
     		System.out.println("Largest Element in the range ("

@@ -57,9 +57,8 @@ public class MinQueryST
 	}
 	static void ConstructST(int arr[],int size)
 	{
-		//Height of segment tree
+		// Height of segment tree= ceil(log2(N)), N-> leaf nodes
 		int x = (int) (Math.ceil(Math.log(size) / Math.log(2)));
-	//	System.out.println("Ht"+x);
 		//Maximum size of segment tree
 		int max_size = 2 * (int) Math.pow(2, x) - 1;
 		st = new int[max_size]; // allocate memory
@@ -86,7 +85,7 @@ public class MinQueryST
     	end=in.nextInt();
     	 
     	int small=0;
-    	if(start>0 || end>n)
+    	if(start<0 || end>=n)
     	{
     		small=RangeMinQuery(n, start, end);
     		System.out.println("Smallest Element in the range ("
