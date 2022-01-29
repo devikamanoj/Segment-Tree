@@ -15,19 +15,18 @@ public class MaxQueryST
 	static int RMaxUtilFunc(int[] st, int SI,int EI, int QSI,int QEI, int CurrIndex)
 	{
 	
-	// When segment of current index is part of the given range, return the maximum from the segment
-	if (QSI <= SI && QEI >= EI)
-		return st[CurrIndex];
-	
-	// When segment of current index is not part of the given range, return -1
-	if (EI < QSI || SI > QEI)
-		return -1;
-	
-	
-	int mid = getMid(SI, EI);
-	
-	return Math.max(RMaxUtilFunc(st, SI, mid, QSI, QEI,2 * CurrIndex + 1),
-			RMaxUtilFunc(st, mid + 1, EI, QSI, QEI,2 * CurrIndex + 2));
+		// When segment of current index is part of the given range, return the maximum from the segment
+		if (QSI <= SI && QEI >= EI)
+			return st[CurrIndex];
+		
+		// When segment of current index is not part of the given range, return -1
+		if (EI < QSI || SI > QEI)
+			return -1;
+		
+		
+		int mid = getMid(SI, EI);
+		
+		return Math.max(RMaxUtilFunc(st, SI, mid, QSI, QEI,2 * CurrIndex + 1),RMaxUtilFunc(st, mid + 1, EI, QSI, QEI,2 * CurrIndex + 2));
 	}
 	
 	//Return largest element in a given query range
