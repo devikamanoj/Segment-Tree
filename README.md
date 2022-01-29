@@ -43,6 +43,28 @@ For a given segment tree, if a node is updated, then all the affected nodes are 
 
 ## Outputs
 
+### User choice
+<br>
+<p align="center">
+   <img align="center" height="300" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig1.png"/>
+ </p>
+  
+### Exploring the Options
+<table>
+     <tr>
+          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig2.png" /><br /><center><b>Minimum Range Query</b></center></td>
+          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig4.png" /><br /><center><b>Maximum Range Query</b></center></td>
+     </tr>
+     <tr>
+          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig6.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
+          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig7.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
+     </tr>
+    <tr>
+            <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig8.png" /><br /><center><b>Sum of Given Range</b></center></td>
+            <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig9.png" /><br /><center><b>Lazy Propagation</b></center></td>
+       </tr>
+
+</table>
 
 ## Contributions
 
