@@ -56,8 +56,8 @@ For a given segment tree, if a node is updated, then all the affected nodes are 
           <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig4.png" /><br /><center><b>Maximum Range Query</b></center></td>
      </tr>
      <tr>
-          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig6.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
-          <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig7.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
+          <td><img height="150" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig6.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
+          <td><img height="150" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig7.png" /><br /><center><b>Persistent Segment Tree - Version 1</b></center></td>
      </tr>
     <tr>
             <td><img height="200" src="https://github.com/devikamanoj/Segment-Tree/blob/main/OUTPUT/fig8.png" /><br /><center><b>Sum of Given Range</b></center></td>
