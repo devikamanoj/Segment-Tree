@@ -47,5 +47,6 @@ For a given segment tree, if a node is updated, then all the affected nodes are 
 ## Contributions
 
 **Nivedita Rajesh:** Implementation of Persistent segment tree and Min & max query from a given range
+
 **M Devika:** Implementation of Lazy Propagation (update segment tree and sum in the given range)
 
